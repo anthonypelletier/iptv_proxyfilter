@@ -32,6 +32,11 @@ def filtered_m3u():
     if name_filter is not None:
         channels = [x for x in channels if name_filter in x.tvg_name]
 
+    # +1 filter
+    plus1_disable = os.getenv('IPTV_PROXYFILTER_PLUS1_DISABLE', True)
+    if plus1_disable:
+        channels = [x for x in channels if '+1' in x.tvg_name.replace(' ', '')]
+
     # id notnull filter
     id_notnull_filter = os.getenv('IPTV_PROXYFILTER_ID_NOTNULL', False)
     if id_notnull_filter:
