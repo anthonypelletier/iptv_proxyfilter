@@ -43,7 +43,7 @@ def index():
                 uniq_channels[channel.tvg_id] = channel
         channels = uniq_channels.values()
 
-    response_content = '#EXTM3U\n'
+    response_content = '#EXTM3U\r\n'
     for channel in channels:
         response_content += str(channel)
 

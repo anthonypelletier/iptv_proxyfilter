@@ -32,7 +32,7 @@ class Channel:
             'tvg-name="' + self.tvg_name + '" ' + \
             'tvg-logo="' + self.tvg_logo + '" ' + \
             'group-title="' + self.group_title + '"' + \
-            ',' + self.tvg_name + '\n' + self.stream_url + '\n'
+            ',' + self.tvg_name + '\r\n' + self.stream_url + '\r\n'
 
 
 def parse_channels(data):
