@@ -1,0 +1,14 @@
+version: '3'
+services:
+  iptv_proxyfilter:
+    build:
+      context: ./iptv_proxyfilter
+    container_name: iptv_proxyfilter
+    ports:
+      - 80:80
+    environment:
+      - IPTV_PROXYFILTER_URL=http://king365tv.podzone.org:2103/get.php?username=Anthony_PELLETIER2&password=*****&type=m3u_plus&output=ts
+      - IPTV_PROXYFILTER_NAME='|FR| '
+      - IPTV_PROXYFILTER_ID_NOTNULL=true
+      - IPTV_PROXYFILTER_ID_UNIQ=true
+    restart: unless-stopped
