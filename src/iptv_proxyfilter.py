@@ -48,7 +48,7 @@ def index():
         response_content += str(channel)
 
     response = make_response(response_content)
-    response.headers.set('Content-Type', 'text/plain')
+    response.headers.set('Content-Type', 'audio/x-mpegurl')
     response.headers.set('Content-Disposition', 'attachment', filename='filtered.m3u')
     return response
 
