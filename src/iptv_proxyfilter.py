@@ -1,6 +1,6 @@
 import os
 import requests
-from flask import Flask, Response
+from flask import Flask, make_response
 from werkzeug.contrib.cache import SimpleCache
 from parse_channels import parse_channels
 
@@ -43,10 +43,14 @@ def index():
                 uniq_channels[channel.tvg_id] = channel
         channels = uniq_channels.values()
 
-    response = '#EXTM3U\n'
+    response_content = '#EXTM3U\n'
     for channel in channels:
-        response += str(channel)
-    return Response(response, mimetype='text/plain')
+        response_content += str(channel)
+
+    response = make_response(response_content)
+    response.headers.set('Content-Type', 'text/plain')
+    response.headers.set('Content-Disposition', 'attachment', filename='filtered.m3u')
+    return response
 
 
 if __name__ == '__main__':
