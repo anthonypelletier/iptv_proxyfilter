@@ -1,6 +1,6 @@
 import os
 import requests
-from flask import Flask, make_response
+from flask import Flask, make_response, redirect, url_for
 from werkzeug.contrib.cache import SimpleCache
 from parse_channels import parse_channels
 
@@ -11,6 +11,11 @@ cache = SimpleCache()
 
 @app.route('/')
 def index():
+    return redirect(url_for('filtered_m3u'))
+
+
+@app.route('/filtered.m3u')
+def filtered_m3u():
     url = os.getenv('IPTV_PROXYFILTER_URL', None)
     if url is None:
         return 'Error: Please set IPTV_PROXYFILTER_URL env variable.'
