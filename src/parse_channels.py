@@ -20,6 +20,9 @@ class Channel:
                 return weight
         return 0
 
+    def get_compliant_name(self):
+        return self.tvg_name.replace('FULL HD', 'HD').replace('H265', 'HD')
+
     def __gt__(self, other_channel):
         return self.get_quality_weight() > other_channel.get_quality_weight()
 
@@ -29,10 +32,10 @@ class Channel:
     def __str__(self):
         return '#EXTINF:-1 ' + \
             'tvg-id="' + self.tvg_id + '" ' + \
-            'tvg-name="' + self.tvg_name + '" ' + \
+            'tvg-name="' + self.get_compliant_name() + '" ' + \
             'tvg-logo="' + self.tvg_logo + '" ' + \
             'group-title="' + self.group_title + '"' + \
-            ',' + self.tvg_name + '\r\n' + self.stream_url + '\r\n'
+            ',' + self.get_compliant_name() + '\r\n' + self.stream_url + '\r\n'
 
 
 def parse_channels(data):
