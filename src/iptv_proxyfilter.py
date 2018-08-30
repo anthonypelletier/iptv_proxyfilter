@@ -2,7 +2,7 @@ import os
 import requests
 from flask import Flask, Response
 from werkzeug.contrib.cache import SimpleCache
-from src.parse_channels import parse_channels
+from .parse_channels import parse_channels
 
 app = Flask(__name__)
 app.debug = os.getenv('DEBUG', True)
